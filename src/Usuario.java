@@ -5,13 +5,22 @@ public class Usuario{
     private String email;
     private String telefone;
     private double saldo;
+    private final String cpf;
+    private RegistroOperacoes movimentacoes;
 
-    public Usuario(String pnome, String pemail, String ptelefone, double psaldo){
+    public Usuario(String cpf, String pnome, String pemail, String ptelefone, double psaldo){
         nome = pnome;
         email = pemail;
         telefone = ptelefone;
         saldo = psaldo;
+        this.cpf = cpf;
+        this.movimentacoes = new RegistroOperacoes();
     }
+
+    public String getCpf(){
+        return cpf;
+    }
+
 
     public void setNome(String nome){
         this.nome = nome;
@@ -25,10 +34,9 @@ public class Usuario{
         this.email = email;
     }
 
-
-
     public void inserirCredito(double valor){
         saldo = saldo + valor;
+        movimentacoes.registrar("crédito", valor);
     }
 
     public double consultarCredito(){
@@ -37,9 +45,12 @@ public class Usuario{
 
     public void consumirRefeicao(double valor){
         saldo = saldo - valor;
+        movimentacoes.registrar("débito", valor);
     }
 
-
+    public String gerarExtrato(){
+        return movimentacoes.listar();
+    }
 
     public String toString(){
         String str = "";
