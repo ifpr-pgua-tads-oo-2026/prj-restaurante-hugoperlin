@@ -93,13 +93,16 @@ public class Restaurante {
 
     public String listar(){
 
-        String texto="";
+        String texto="Usuários Cadastrados\n";
 
         for(int i=0;i<usuarios.length;i++){
-            texto += usuarios[i].toString()+"\n";
+            if(usuarios[i] != null){
+                texto += usuarios[i].toString()+"\n";
+            }
+            
         }
         return texto;
-        
+
     }
 
 
