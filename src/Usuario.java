@@ -34,18 +34,31 @@ public class Usuario{
         this.email = email;
     }
 
-    public void inserirCredito(double valor){
-        saldo = saldo + valor;
-        movimentacoes.registrar("crédito", valor);
+    public String getEmail(){
+        return this.email;
+    }
+
+    public boolean inserirCredito(double valor){
+        if(valor > 0){
+            saldo = saldo + valor;
+            movimentacoes.registrar("crédito", valor);
+            return true;
+        }
+        return false;
+        
     }
 
     public double consultarCredito(){
         return saldo;
     }
 
-    public void consumirRefeicao(double valor){
-        saldo = saldo - valor;
-        movimentacoes.registrar("débito", valor);
+    public boolean consumirRefeicao(double valor){
+        if(valor > 0){
+            saldo = saldo - valor;
+            movimentacoes.registrar("débito", valor);
+            return true;
+        }
+        return false;
     }
 
     public String gerarExtrato(){
