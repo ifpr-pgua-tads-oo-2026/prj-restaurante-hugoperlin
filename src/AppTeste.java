@@ -107,6 +107,38 @@ public class AppTeste {
     
     }
 
+    private static void permiteCadastrarFuncionario(){
+
+        Restaurante restaurante = new Restaurante();
+
+        String retorno = restaurante.cadastrarFuncionario("Func", "func@teste.com", "000.000", 10, "cozinheira", "manhã");
+
+        System.out.println(retorno);
+
+    }
+
+    private static void permiteListarFuncionarios(){
+
+        Restaurante restaurante = new Restaurante();
+
+        restaurante.cadastrarFuncionario("Func1", "func1@teste.com", "100.000", 10, "cozinheira", "manhã");
+        restaurante.cadastrarFuncionario("Func2", "func2@teste.com", "200.000", 10, "cozinheira", "manhã");
+        restaurante.cadastrarFuncionario("Func3", "func3@teste.com", "300.000", 10, "cozinheira", "manhã");
+
+        System.out.println(restaurante.listarFuncionarios());
+
+    }
+
+    private static void naoPermiteCadastrarFuncionarioMesmoCpf(){
+        Restaurante restaurante = new Restaurante();
+        restaurante.cadastrarFuncionario("Func", "func@teste.com", "000.000", 10, "cozinheira", "manhã");
+
+        String retorno = restaurante.cadastrarFuncionario("Func", "func@teste.com", "000.000", 10, "cozinheira", "manhã");
+
+        System.out.println(retorno);
+
+    }
+
 
 
 
@@ -122,6 +154,9 @@ public class AppTeste {
         permiteConsumir();
         naoPermiteConsumirUsuarioNaoEncontrado();
         naoPermiteConsumirValorNegativo();
+        permiteCadastrarFuncionario();
+        naoPermiteCadastrarFuncionarioMesmoCpf();
+        permiteListarFuncionarios();
     }
 
 

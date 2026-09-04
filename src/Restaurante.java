@@ -1,39 +1,32 @@
+import java.util.ArrayList;
+
 public class Restaurante {
     
-    private static final int MAX=50;
+    
+    private ArrayList<Usuario> usuarios;
 
-    private Usuario[] usuarios;
+    private ArrayList<Funcionario> funcionarios;
 
     public Restaurante(){
-        usuarios = new Usuario[MAX];
+        usuarios = new ArrayList<>();
+        funcionarios = new ArrayList<>();
     }
 
-    private int posicaoLivre(){
-        for(int i=0;i<usuarios.length;i++){
-            if(usuarios[i] == null){
-                return i;
-            }
-        }
-        return -1;
-    }
 
     public Usuario buscarCpf(String cpf){
-        for(int i=0;i<usuarios.length;i++){
-            if(usuarios[i] != null){
-                if(usuarios[i].getCpf().equals(cpf)){
-                    return usuarios[i];
-                }
+        for(int i=0;i<usuarios.size();i++){
+            if(usuarios.get(i).getCpf().equals(cpf)){
+                return usuarios.get(i);
+                
             }
         }
         return null;
     }
 
     public Usuario buscarEmail(String email){
-        for(int i=0;i<usuarios.length;i++){
-            if(usuarios[i] != null){
-                if(usuarios[i].getEmail().equals(email)){
-                    return usuarios[i];
-                }
+        for(int i=0;i<usuarios.size();i++){
+            if(usuarios.get(i).getEmail().equals(email)){
+                return usuarios.get(i);
             }
         }
         return null;
@@ -43,13 +36,45 @@ public class Restaurante {
                                     String telefone, String cpf){
         
         if((buscarCpf(cpf)==null) && (buscarEmail(email)==null)){
-            int pos = posicaoLivre();
-            usuarios[pos] = new Usuario(cpf, nome, email, telefone, 0.0);
+            Usuario u = new Usuario(cpf, nome, email, telefone, 0.0);
+            usuarios.add(u);
             return true;
         }
         return false;
         
     }
+
+    public Funcionario buscarFuncionarioCpf(String cpf){
+        for(Funcionario f:funcionarios){
+            if(f.getCpf().equals(cpf)){
+                return f;
+            }
+        }
+        return null;
+    }
+
+
+    public String cadastrarFuncionario(String nome, String email, String cpf,
+                                       double salario, String cargo, String turno
+    ){
+
+        if(buscarFuncionarioCpf(cpf) == null){
+            Funcionario f = new Funcionario(nome, email, cpf,salario, cargo, turno);
+            funcionarios.add(f);
+            return "Funcionário cadastrado!";
+        }
+        return "Funcionário não cadastrado!";
+    }
+
+    public String listarFuncionarios(){
+        String texto = "";
+
+        for(Funcionario f:funcionarios){
+            texto += f.toString()+"\n";
+        }
+        return texto;
+    }
+
 
     public String depositar(String cpf, double valor){
         Usuario usuario = buscarCpf(cpf);
@@ -95,10 +120,9 @@ public class Restaurante {
 
         String texto="Usuários Cadastrados\n";
 
-        for(int i=0;i<usuarios.length;i++){
-            if(usuarios[i] != null){
-                texto += usuarios[i].toString()+"\n";
-            }
+        for(int i=0;i<usuarios.size();i++){
+            texto += usuarios.get(i).toString()+"\n";
+            
             
         }
         return texto;
