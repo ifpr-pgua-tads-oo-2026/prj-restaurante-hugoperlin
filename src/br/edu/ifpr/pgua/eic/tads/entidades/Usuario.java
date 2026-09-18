@@ -1,43 +1,25 @@
-public class Usuario{
+package br.edu.ifpr.pgua.eic.tads.entidades;
+
+public final class Usuario extends Pessoa{
 
     //atributos
-    private String nome;
-    private String email;
+
     private String telefone;
     private double saldo;
-    private final String cpf;
+    
     private RegistroOperacoes movimentacoes;
 
     public Usuario(String cpf, String pnome, String pemail, String ptelefone, double psaldo){
-        nome = pnome;
-        email = pemail;
+        
+        super(pnome,pemail,cpf);
+
         telefone = ptelefone;
         saldo = psaldo;
-        this.cpf = cpf;
+        
         this.movimentacoes = new RegistroOperacoes();
     }
 
-    public String getCpf(){
-        return cpf;
-    }
-
-
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-
-    public String getNome(){
-        return this.nome;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
-
-    public String getEmail(){
-        return this.email;
-    }
-
+    
     public boolean inserirCredito(double valor){
         if(valor > 0){
             saldo = saldo + valor;

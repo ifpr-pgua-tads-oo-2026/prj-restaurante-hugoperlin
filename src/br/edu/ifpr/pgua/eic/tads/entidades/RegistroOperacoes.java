@@ -1,9 +1,9 @@
+package br.edu.ifpr.pgua.eic.tads.entidades;
 
 import java.util.ArrayList;
 
 public class RegistroOperacoes {
     private static final int MAX = 50; //constante
-
     private ArrayList<Operacao> operacoes;
     private int posicaoLivre;
 

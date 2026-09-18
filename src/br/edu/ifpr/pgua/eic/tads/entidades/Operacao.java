@@ -1,3 +1,4 @@
+package br.edu.ifpr.pgua.eic.tads.entidades;
 import java.time.LocalDateTime;
 
 public class Operacao {

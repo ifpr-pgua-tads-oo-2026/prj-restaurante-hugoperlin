@@ -1,3 +1,4 @@
+package br.edu.ifpr.pgua.eic.tads.entidades;
 import java.util.ArrayList;
 
 public class Restaurante {

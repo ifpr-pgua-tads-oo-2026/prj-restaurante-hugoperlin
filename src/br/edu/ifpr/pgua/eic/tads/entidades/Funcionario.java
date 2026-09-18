@@ -1,8 +1,8 @@
-public class Funcionario {
+package br.edu.ifpr.pgua.eic.tads.entidades;
+
+
+public class Funcionario extends Pessoa {
     
-    private String nome;
-    private String email;
-    private String cpf;
     private double salario;
     private String cargo;
     private String turno;
@@ -10,9 +10,9 @@ public class Funcionario {
     public Funcionario(String nome, String email,
                        String cpf, double salario,
                        String cargo, String turno){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
+
+        super(nome,email,cpf);
+
         this.cargo = cargo;
         this.turno = turno;
         this.salario = salario;
@@ -30,29 +30,6 @@ public class Funcionario {
 
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public double getSalario() {
         return salario;
@@ -78,10 +55,27 @@ public class Funcionario {
         this.turno = turno;
     }
 
+    public double calcularSalario(){
+        System.out.println("---Classe Funcionario");
+        return salario;
+    }
+
     @Override
     public String toString() {
-        return "Funcionario [nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", salario=" + salario + ", cargo="
+        
+        //usando os métodos get definidos na super classe Pessoa
+        //return "Funcionario [nome=" + getNome() + ", email=" + getEmail() + ", cpf=" + getCpf() + ", salario=" + salario + ", cargo="
+        //        + cargo + ", turno=" + turno + "]";
+        
+        //invocando o método toString da super classe Pessoa
+        return "Funcionario ["+super.toString()+", salario=" + salario + ", cargo="
                 + cargo + ", turno=" + turno + "]";
+
+        //definindo nome, email e cpf como protected na super classe Pessoa
+        //return "Funcionario [nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", salario=" + salario + ", cargo="
+        //        + cargo + ", turno=" + turno + "]";
+        
+        
     }
 
     

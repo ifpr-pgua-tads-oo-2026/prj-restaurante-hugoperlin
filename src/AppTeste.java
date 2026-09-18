@@ -1,3 +1,5 @@
+import br.edu.ifpr.pgua.eic.tads.entidades.Restaurante;
+
 public class AppTeste {
     
     private static void permiteCadastrarUsuario(){
